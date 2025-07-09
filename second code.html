@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To Do List</title>
+    <link rel="stylesheet" href="indexx2.css" />
+</head>
+<body>
+  <button onclick="toggleDarkMode()" class="darkToggle">🌙 Toggle Dark Mode</button>
+
+  <div id="myDIV" class="header">
+    <h2>My To Do List</h2>
+    <input type="text" id="myInput" placeholder="Title...">
+    <span onclick="newElement()" class="addBtn">Add</span>
+  </div>
+
+  <br><br>
+
+  <ul id="myUL" class="parent">
+    <li>
+      <div class="todo item">
+        <input type="checkbox" />
+        <span>Go to parents house</span>
+      </div>
+      <span class="close">×</span>
+    </li>
+    <li>
+      <div class="todo item">
+        <input type="checkbox" />
+        <span>Go to los amigos house</span>
+      </div>
+      <span class="close">×</span>
+    </li>
+    <li>
+      <div class="todo item">
+        <input type="checkbox" />
+        <span>Feed and cover the chickens</span>
+      </div>
+      <span class="close">×</span>
+    </li>
+    <li>
+      <div class="todo item">
+        <input type="checkbox" />
+        <span>Take a bath</span>
+      </div>
+      <span class="close">×</span>
+    </li>
+    <li>
+      <div class="todo item">
+        <input type="checkbox" />
+        <span>Go to Lanang and get Gaya</span>
+      </div>
+      <span class="close">×</span>
+    </li>
+  </ul>
+
+  <script>
+    // Close button functionality
+    function addCloseFunctionality() {
+      var close = document.getElementsByClassName("close");
+      for (var i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+          var li = this.parentElement;
+          li.style.display = "none";
+        };
+      }
+    }
+
+    // Initially add close button functionality
+    addCloseFunctionality();
+
+    // Create new element
+    function newElement() {
+      var inputValue = document.getElementById("myInput").value;
+      if (inputValue === '') {
+        alert("You must write something!");
+        return;
+      }
+
+      var li = document.createElement("li");
+
+      var div = document.createElement("div");
+      div.className = "todo item";
+
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+
+      var spanText = document.createElement("span");
+      spanText.textContent = inputValue;
+
+      div.appendChild(checkbox);
+      div.appendChild(spanText);
+      li.appendChild(div);
+
+      var spanClose = document.createElement("span");
+      spanClose.className = "close";
+      spanClose.textContent = "\u00D7";
+      li.appendChild(spanClose);
+
+      document.getElementById("myUL").appendChild(li);
+      document.getElementById("myInput").value = "";
+
+      addCloseFunctionality();
+    }
+    function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
+}
+
+  </script>
+  
+</body>
